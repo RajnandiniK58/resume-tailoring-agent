@@ -143,4 +143,4 @@ Text fields support light markup: `**bold**`, `*italic*`, `` `code` ``, `[label]
 
 ## License
 
-Add a license of your choice (for example MIT) before publishing.
+This project is licensed under the MIT License.
