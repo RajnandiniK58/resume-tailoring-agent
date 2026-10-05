@@ -1,0 +1,76 @@
+# master.example.yaml -- a template for data/master.yaml
+#
+# HOW TO USE
+#   1. Copy this file to data/master.yaml   (Windows: copy data\master.example.yaml data\master.yaml)
+#   2. Replace every placeholder below with your own details.
+#   3. Run:  python run.py --jd jd.txt --mock     to check that it builds, then run without --mock.
+#
+# TEXT MARKUP (allowed in any text field below)
+#   **bold**    *italic*    `code`    [label](url)    [label](url)^   (the ^ adds an external-link icon)
+# Never write raw LaTeX. Special characters (& % $ # _) are escaped for you.
+# Use plain double quotes around any value that contains a colon (:) or starts with a symbol.
+#
+# RULES THE AGENT RELIES ON
+#   - Every project and bullet needs an `id`, and every id must be UNIQUE across the whole file.
+#   - Write only true facts. The agent can reorder and reword these, but it will never add new ones.
+#   - Your contact details (`basics`), education and certificate links are never sent to the LLM.
+
+basics:
+  name: Your Name
+  github:   { label: your-github-username, url: "https://github.com/your-github-username" }
+  linkedin: { label: Your Name, url: "https://www.linkedin.com/in/your-linkedin-id" }
+  email: your.email@example.com
+  phone: { display: "(+91) 00000 00000", tel: "+910000000000" }   # display = shown on the resume, tel = used for the tap-to-call link
+
+education:                      # add more entries if needed
+  - school: Example Institute of Technology
+    dates: Aug 2022 - June 2026
+    degree: "B.E. Computer Engineering ; CGPA: 8.00"
+    location: City, Country
+    note: "Class XII: 85% | Class X: 90%"      # optional: delete the line if you don't want it
+
+skills:                        # one entry per row on the resume; items inside each row are shown in this order
+  - { category: Programming Languages, items: [Python, SQL, JavaScript] }
+  - { category: AI/ML, items: [Machine Learning, NLP, Scikit-Learn, Pandas, NumPy] }
+  - { category: Generative AI, items: [LLMs, RAG, LangChain, Prompt Engineering] }
+  - { category: Backend & Tools, items: [FastAPI, Streamlit, Docker, Git] }
+  # The agent only REORDERS these to put JD-relevant skills first. It never adds a skill that isn't listed here.
+
+projects:                      # list your best projects; the agent picks and orders the most relevant ones
+  - id: example-chatbot        # unique, no spaces
+    title: Customer Support Chatbot -- RAG-Based Question Answering
+    tech: [Python, LangChain, FAISS, Streamlit]   # the tools used in THIS project (rewrites may only mention these)
+    tags: [rag, llm, chatbot]                     # optional helper labels (not used yet)
+    bullets:
+      - { id: cb-1, text: "Built a Retrieval-Augmented Generation (RAG) chatbot that answers questions from company documents with source-attributed responses." }
+      - { id: cb-2, text: "Integrated FAISS vector search with sentence embeddings to retrieve the most relevant document chunks for each query." }
+      - { id: cb-3, text: "Developed a Streamlit interface for uploading documents and chatting with the assistant." }
+
+  - id: example-api
+    title: Task Manager -- REST API
+    tech: [Python, FastAPI, SQLite]
+    tags: [backend, api]
+    bullets:
+      - { id: api-1, text: "Designed REST endpoints with FastAPI for creating, updating and tracking tasks, with validated request and response schemas." }
+      - { id: api-2, text: "Stored task data in SQLite and added filtering by status and due date." }
+
+  - id: example-ml
+    title: House Price Prediction -- Regression Model
+    tech: [Python, Scikit-Learn, Pandas]
+    tags: [ml, regression]
+    bullets:
+      - { id: ml-1, text: "Cleaned and explored a housing dataset with Pandas, then engineered features for model training." }
+      - { id: ml-2, text: "Trained and compared regression models in Scikit-Learn and selected the best one using cross-validation." }
+
+internships:                   # optional section: remove the whole block if you have none
+  - title: Data Science Virtual Internship
+    dates: Jan -- Mar 2025
+    org: Example Company (via Example Program)
+    cert_url: "https://example.com/certificate"   # required by the current template; if you have no certificate link, remove the Certificate link in templates/resume.tex.j2
+    bullets:
+      - { id: in1-1, text: "Completed coursework in data analysis and visualization through a virtual internship program." }
+      - { id: in1-2, text: "Applied exploratory data analysis and statistical methods on structured datasets." }
+
+achievements:                  # optional; each id must be unique
+  - { id: ach-1, text: "Published a research paper titled [**\"Example Paper Title\"**](https://example.com/paper) in *Example Journal*, Vol. 1, Issue 1, 2026." }
+  - { id: ach-2, text: "Won [**1st Prize**](https://example.com/certificate)^ in the **Example Project Competition** at the college technical fest." }
