@@ -9,7 +9,7 @@ from pydantic import BaseModel
 T = TypeVar("T", bound=BaseModel)
 
 # Free-tier-friendly defaults. Override with GEMINI_MODELS="modelA,modelB" in .env
-DEFAULT_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
+DEFAULT_MODELS = ["gemini-3.5-flash", "gemini-3.5-flash-lite"]
 
 
 class LLMError(RuntimeError):
